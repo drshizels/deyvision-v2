@@ -1,0 +1,316 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #222222;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+#vanta-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background: #222222;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    z-index: 1;
+}
+
+
+#three-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+#three-container canvas {
+    pointer-events: auto;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    color: #ffffff;
+    text-shadow:
+        1px 1px 0 #ccc,
+        2px 2px 0 #bbb,
+        3px 3px 0 #aaa,
+        4px 4px 5px rgba(0,0,0,0.4);
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    opacity: 0.7;
+}
+
+/* Scroll Hint */
+.scroll-hint {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    z-index: 10;
+}
+
+.scroll-hint p {
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    opacity: 0.6;
+}
+
+.scroll-arrow {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, #ffffff 0%, transparent 100%);
+    margin-top: 1rem;
+    animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* Sections */
+.section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 0;
+    background: transparent;
+    z-index: 1;
+    overflow: visible;
+}
+
+.section-content {
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+    overflow: visible;
+}
+
+.section h2 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    text-shadow:
+        1px 1px 0 #ccc,
+        2px 2px 0 #bbb,
+        3px 3px 0 #aaa,
+        4px 4px 0 #999,
+        5px 5px 0 #888,
+        6px 6px 8px rgba(0,0,0,0.4);
+}
+
+.section p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.8;
+    opacity: 0.7;
+}
+
+.video-section {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+    filter: blur(10px);
+    transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+
+.video-section.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+.video-section h2 {
+    font-family: 'Owners TRIAL XXWide Medium', 'Inter', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    text-shadow:
+        1px 1px 0 #ccc,
+        2px 2px 0 #bbb,
+        3px 3px 0 #aaa,
+        4px 4px 0 #999,
+        5px 5px 8px rgba(0,0,0,0.4);
+}
+
+.video-carousel {
+    display: flex;
+    gap: 2rem;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    padding: 2rem calc(50vw - 140px);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    align-items: center;
+}
+
+.video-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.video-item {
+    flex: 0 0 auto;
+    text-align: center;
+    position: relative;
+}
+
+.video-title {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 10;
+}
+
+.video-player {
+    flex: 0 0 auto;
+    width: 280px;
+    border-radius: 8px;
+    scroll-snap-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
+    transform: scale(0.85);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, width 0.4s ease;
+}
+
+.video-player:hover {
+    transform: scale(1);
+    width: 400px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Reel Container */
+.reel-container {
+    width: 50%;
+    max-width: 500px;
+    margin: 0 auto;
+    aspect-ratio: 16 / 9;
+    transition: width 0.4s ease, max-width 0.4s ease, transform 0.4s ease;
+}
+
+.reel-container:hover {
+    width: 70%;
+    max-width: 700px;
+}
+
+@media (max-width: 768px) {
+    .reel-container {
+        width: 90%;
+        max-width: 100%;
+    }
+    .reel-container:hover {
+        width: 90%;
+        max-width: 100%;
+    }
+}
+
+.reel-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: box-shadow 0.4s ease;
+}
+
+.reel-container:hover iframe {
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* YouTube Short Embed */
+.youtube-short {
+    width: 280px;
+    height: 500px;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    scroll-snap-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 10px 20px rgba(0, 0, 0, 0.4);
+    transform: scale(0.85);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.youtube-short:hover {
+    transform: scale(1);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Fade In Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Footer */
+.footer {
+    position: relative;
+    padding: 4rem;
+    background: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 1;
+}
+
+.footer p {
+    font-size: 0.875rem;
+    opacity: 0.5;
+    line-height: 1.6;
+}
+
+/* Selection */
+::selection {
+    background: #ffffff;
+    color: #0a0a0a;
+}
